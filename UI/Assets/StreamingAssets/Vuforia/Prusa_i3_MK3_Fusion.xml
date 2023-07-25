@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+<Tracking>
+<ModelTarget name="Prusa_i3_MK3_Fusion" motionHint="adaptive" trackingMode="car" optimizeTrackingFor="default"/>
+
+</Tracking>
+
+<Assembly name="Prusa_i3_MK3_Fusions_assembly" assemblyId="cbef9862d25646d699a274df3d7a7d9c">
+<Part name="Prusa_i3_MK3_Fusion" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="GuideView_0000" translation="-0.029095 0.178353 0.928816" rotation="AD: 0.998579 -0.289804 0.25437 101.378" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARConfig>

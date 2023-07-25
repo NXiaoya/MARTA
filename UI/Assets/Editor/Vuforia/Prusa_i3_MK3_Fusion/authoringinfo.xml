@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARInfo>
+<TargetSet version="27.0" toolVersion="10.15.3">
+<ModelTarget name="Prusa_i3_MK3_Fusion" targetId="6809d3ad43be4551a714d013e49b201f" version="14.0" toolVersion="10.15.3" bbox="-0.195554 -0.291886 0.005845 0.232891 0.129076 0.383575" previewImage="6809d3ad43be4551a714d013e49b201f_preview.jpg"/>
+
+</TargetSet>
+
+<Assembly name="Prusa_i3_MK3_Fusions_assembly" assemblyId="cbef9862d25646d699a274df3d7a7d9c">
+<Part name="Prusa_i3_MK3_Fusion" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="GuideView_0000" translation="-0.029095 0.178353 0.928816" rotation="AD: 0.998579 -0.289804 0.25437 101.378" image="Prusa_i3_MK3_Fusion_GuideView_0000.png" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARInfo>
