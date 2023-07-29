@@ -1,5 +1,7 @@
-EXTERNAL ShowObject(ObjectName)
+EXTERNAL ShowObject(objectName)
 EXTERNAL Highlight(ObjectName)
+EXTERNAL HighlightOff(ObjectName)
+EXTERNAL SolderAnimation(ObjectName)
 
 -> menu
 
@@ -29,21 +31,29 @@ Get ready to start a safe virtual soldering experience!
 Align yourself with the Guide view of the soldering station.
 ~ ShowObject("Station")
 Let's first familiarize ourselves with the equipment needed for soldering.
-~ Highlight("soldering staition")
+~ Highlight("soldering_staion")
 This is a digital soldering station.
+~ HighlightOff("soldering_staion")
 ~ Highlight("Soldering_Iron")
 The soldering iron. By heating a soldering iron, you can melt solder, a metal alloy with a low melting point, to join wires, circuit boards, and other electrical parts. 
+~ HighlightOff("Soldering_Iron")
 ~ Highlight("bobin")
 This is the soldering wire.The solder wire acts as a medium to connect electrical connections by creating a metallurgical bond between the soldering iron tip, the component, and the surface being soldered.
+~ HighlightOff("bobin")
 
 ->step3
 === step3 ===
 Let's start Soldering with a little exercise.
 We will start with the throughhole soldering.
-There are some common throughhole components: capacitor, resistor,LED.
+~ Highlight("breadboard")
+There are some common throughhole components on the breadboard: capacitor, resistor,LED.
+~ HighlightOff("breadboard")
+~ Highlight("StripBoard")
 We have a soldering sation and a strip board.
-Bend the leg to make the component fit with the board.
-Sild the components into the pin hole.
+~ HighlightOff("StripBoard")
+~ SolderAnimation("PlugResistor")
+Bend the leg to make the component fit with the board. And sild the components into the pin hole.
+~ SolderAnimation("TurnOnStation")
 Turn on the soldering station.
 Prepare a wet sponge. Before you start soldering, apply some solder to the tip of the iron and clean it with the sponge.
 Use the tip of the soldering iron to heat up both the pinhole and the leg, and feed the solder onto it.
@@ -63,6 +73,7 @@ Heat uo the solder and insert the wire into them.
 If you make a bad joint or want to remove a component, you need to do the desoldering.
 ~ Highlight("Solder Pump")
 We can use desoldring pump to help us remove the components.
+~ HighlightOff("Solder Pump")
 Push done the plunger before desoldering.
 Heat the solder directly with the soldering iron with the tip of the pump next to the solder joint.
 Press the button.Then the pump sucks up the solder. Sometimes it takes several attempts to remove the component.

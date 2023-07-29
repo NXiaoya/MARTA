@@ -10,8 +10,12 @@ public class DialogueController : MonoBehaviour
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private GameObject ContinueButton;
+    [SerializeField] private GameObject Station;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private GameObject[] choices;
+    [SerializeField] private Animator SolderingAnimator;
+    private Transform highlight;
+
 
 
     private TextMeshProUGUI[] choicesText;
@@ -20,6 +24,7 @@ public class DialogueController : MonoBehaviour
     private Boolean DialogueIsPlay;
     private static DialogueController instance;
 
+    GameObject ObjectHighlight;
 
 
 
@@ -41,7 +46,7 @@ public class DialogueController : MonoBehaviour
     {
         DialogueIsPlay = false;
         dialoguePanel.SetActive(false);
-    
+
 
         //get all the choices text
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -60,7 +65,46 @@ public class DialogueController : MonoBehaviour
         DialogueIsPlay = true;
         dialoguePanel.SetActive(true);//Open the intruction panel
 
+        currentStory.BindExternalFunction("ShowObject", (string objectName) =>
+        {
+            Station.SetActive(true);
+        });
+
+        currentStory.BindExternalFunction("Highlight", (string objectName) =>
+        {
+            ObjectHighlight = GameObject.Find(objectName);
+            Outline outlineComponent = ObjectHighlight.GetComponent<Outline>();
+            if (outlineComponent != null)
+            {
+                ObjectHighlight.GetComponent<Outline>().enabled = true;
+            }
+            else
+            {
+                Outline outline = ObjectHighlight.AddComponent<Outline>();
+                outline.enabled = true;
+                ObjectHighlight.GetComponent<Outline>().OutlineColor = Color.blue;
+                ObjectHighlight.GetComponent<Outline>().OutlineWidth = 7.0f;
+            }
+
+        });
+
+        currentStory.BindExternalFunction("HighlightOff", (string objectName) =>
+        {
+            ObjectHighlight = GameObject.Find(objectName);
+            ObjectHighlight.GetComponent<Outline>().enabled = false;
+
+        });
+
+         currentStory.BindExternalFunction("SolderAnimation", (string objectName) =>
+        {
+            ContinueButton.SetActive(false);
+            SolderingAnimator.Play(objectName);
+            ContinueButton.SetActive(true);
+        });
+
         ContinueStory();//Call the function to contine the story
+
+        
 
     }
 
@@ -76,7 +120,6 @@ public class DialogueController : MonoBehaviour
     {
         if (currentStory.canContinue)//check if the stroy can run normally
         {
-            HandleTags(currentStory.currentTags);//check tags
             dialogueText.text = currentStory.Continue();//display the text
             DisplayChoices();//display choices if they exsists
         }
@@ -86,29 +129,6 @@ public class DialogueController : MonoBehaviour
         }
     }
 
-    private void HandleTags(List<string> currentTags)
-    {
-        //loop each tag
-        foreach (string tag in currentTags)
-        {
-            string[] splitTag = tag.Split(':');
-            if (splitTag.Length != 2)
-            {
-                Debug.LogError("Tag cound not be parsed" + tag);
-            }
-            string tagKey = splitTag[0].Trim();
-            string tagValue = splitTag[1].Trim();
-
-            switch (tagKey)
-            {
-            
-                default:
-                    Debug.LogWarning("Tag came in but is not currently being handled" + tag);
-                    break;
-            }
-        }
-
-    }
 
     public void DisplayChoices()
     {
