@@ -95,16 +95,16 @@ public class DialogueController : MonoBehaviour
 
         });
 
-         currentStory.BindExternalFunction("SolderAnimation", (string objectName) =>
-        {
-            ContinueButton.SetActive(false);
-            SolderingAnimator.Play(objectName);
-            ContinueButton.SetActive(true);
-        });
+        currentStory.BindExternalFunction("SolderAnimation", (string objectName) =>
+       {
+           ContinueButton.SetActive(false);
+           SolderingAnimator.Play(objectName);
+           ContinueButton.SetActive(true);
+       });
 
         ContinueStory();//Call the function to contine the story
 
-        
+
 
     }
 
@@ -161,7 +161,6 @@ public class DialogueController : MonoBehaviour
         ContinueStory();//continue training
         ContinueButton.SetActive(true);
     }
-
     public void SaveProgress()
     {
         string savedState = currentStory.state.currentPathString;//get the current story progress

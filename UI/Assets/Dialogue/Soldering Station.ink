@@ -51,10 +51,11 @@ There are some common throughhole components on the breadboard: capacitor, resis
 ~ Highlight("StripBoard")
 We have a soldering sation and a strip board.
 ~ HighlightOff("StripBoard")
-~ SolderAnimation("PlugResistor")
+~ SolderAnimation("1PlugResistor")
 Bend the leg to make the component fit with the board. And sild the components into the pin hole.
-~ SolderAnimation("TurnOnStation")
+~ SolderAnimation("2TurnOnStation")
 Turn on the soldering station.
+~ SolderAnimation("3ApplySolder")
 Prepare a wet sponge. Before you start soldering, apply some solder to the tip of the iron and clean it with the sponge.
 Use the tip of the soldering iron to heat up both the pinhole and the leg, and feed the solder onto it.
 Soldering a pin/leg usually takes only a few seconds. Do not heat the components for a long time to avoid damage to the components or board.

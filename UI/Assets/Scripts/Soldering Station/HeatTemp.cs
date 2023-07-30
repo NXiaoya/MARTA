@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class IntegerCounter : MonoBehaviour
 {
     public TextMeshProUGUI countText;
+    [SerializeField] private GameObject ContinueButton;
+    
     GameObject SwitchB;
     private int targetCount = 350;
     private float timeToCount = 2f;
@@ -47,4 +49,18 @@ public class IntegerCounter : MonoBehaviour
         // Ensure the final count is exactly the target count
         countText.text = targetCount.ToString();
     }
+
+    
+    public void StartAnimation()
+    {
+        ContinueButton.SetActive(false);
+
+    }
+
+    public void EndAnimation()
+    {
+        ContinueButton.SetActive(true);
+
+    }
+
 }
