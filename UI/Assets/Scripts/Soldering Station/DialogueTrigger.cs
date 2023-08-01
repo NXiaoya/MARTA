@@ -19,6 +19,7 @@ public class DialogueTrigger : MonoBehaviour
         
             button.SetActive(false);
             DialogueController.GetInstance().EnterDialogueMode(inkJSON);
+            DialogueController.GetInstance().ContinueStory();
         
     }
 }

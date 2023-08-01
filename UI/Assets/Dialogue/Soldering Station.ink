@@ -14,22 +14,21 @@ Soldering Tutorial
   -> step2
 + Step 3: Through Hole Soldering
   -> step3  
-+ Step 4: Wire Soldering
++ Step 4: Desoldering
   -> step4  
-+ Step 5: Desoldering
++ Step 5: After Soldering
   -> step5  
-+ Step 6: After Soldering
-  -> step6
+
 
   
 === step1 ===
 Welcome to the AR Soldering Tutorial! 
 Whether you're a beginner or looking to improve your soldering skills, this step-by-step guide will walk you through the fundamentals of soldering. 
-Get ready to start a safe virtual soldering experience!
 ->step2
 === step2 ===
-Align yourself with the Guide view of the soldering station.
+Get ready to start a safe virtual soldering experience!
 ~ ShowObject("Station")
+Align yourself with the Guide view of the soldering station.
 Let's first familiarize ourselves with the equipment needed for soldering.
 ~ Highlight("soldering_staion")
 This is a digital soldering station.
@@ -55,33 +54,34 @@ We have a soldering sation and a strip board.
 Bend the leg to make the component fit with the board. And sild the components into the pin hole.
 ~ SolderAnimation("2TurnOnStation")
 Turn on the soldering station.
-~ SolderAnimation("3ApplySolder")
+~ SolderAnimation("3Heatiron")
 Prepare a wet sponge. Before you start soldering, apply some solder to the tip of the iron and clean it with the sponge.
+~ SolderAnimation("4ApplySolder")
 Use the tip of the soldering iron to heat up both the pinhole and the leg, and feed the solder onto it.
+~ SolderAnimation("5HeatTime")
 Soldering a pin/leg usually takes only a few seconds. Do not heat the components for a long time to avoid damage to the components or board.
+~ SolderAnimation("6TrimLeads")
 Trim the leads just above the solder using the wire cutter.
+~ SolderAnimation("7CleanIron")
 Before you make another connection. It is important to remove any excess solder reamining on the tip of the iron.
 ->step4
 === step4 ===
-Then Let's try to solder the wire to board.
-We need to solder the wires to the battery pads.
-Firtsly, strip a couple of millimeter of the wire.
-Twist and tin the wire.
-Haet up the pads and apply some solder on to it.
-Heat uo the solder and insert the wire into them.
-->step5
-=== step5 ===
 If you make a bad joint or want to remove a component, you need to do the desoldering.
 ~ Highlight("Solder Pump")
 We can use desoldring pump to help us remove the components.
 ~ HighlightOff("Solder Pump")
+~ SolderAnimation("8ResetPump")
 Push done the plunger before desoldering.
+~ SolderAnimation("9HeatJoint")
 Heat the solder directly with the soldering iron with the tip of the pump next to the solder joint.
+~ SolderAnimation("10Desolder")
 Press the button.Then the pump sucks up the solder. Sometimes it takes several attempts to remove the component.
-->step6
-=== step6 ===
+->step5
+=== step5 ===
 When soldering is complete, several steps are required to ensure the safety of the equipment and the user.
+~ SolderAnimation("11Ironback")
 When you are not soldering, remember always keep the iron into the holder.
+~ SolderAnimation("12StationOff")
 Remember to turn off the soldering station.
 
 -> END

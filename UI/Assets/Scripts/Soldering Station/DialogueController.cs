@@ -4,16 +4,21 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using System;
+using Vuforia;
+using UnityEngine.SceneManagement;
 
 public class DialogueController : MonoBehaviour
 {
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private GameObject ContinueButton;
+    [SerializeField] private GameObject StartButton;
+    [SerializeField] private GameObject Guide;
     [SerializeField] private GameObject Station;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private GameObject[] choices;
     [SerializeField] private Animator SolderingAnimator;
+    [SerializeField] private TextAsset inkJSON;
     private Transform highlight;
 
 
@@ -67,6 +72,9 @@ public class DialogueController : MonoBehaviour
 
         currentStory.BindExternalFunction("ShowObject", (string objectName) =>
         {
+            ContinueButton.SetActive(false);
+            GuideOn();
+            SolderingAnimator.Play("Default");
             Station.SetActive(true);
         });
 
@@ -101,11 +109,7 @@ public class DialogueController : MonoBehaviour
            SolderingAnimator.Play(objectName);
            ContinueButton.SetActive(true);
        });
-
-        ContinueStory();//Call the function to contine the story
-
-
-
+        //ContinueStory();//Call the function to contine the story
     }
 
 
@@ -158,6 +162,13 @@ public class DialogueController : MonoBehaviour
     public void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);//pass the choice index
+        string savedState = currentStory.state.currentPathString;//get the current story progress
+        if (savedState.Length > 5)
+        {
+            // index of string array and number of characters accepted
+            savedState = savedState.Substring(0, 5);
+        }
+        LoadSteps();
         ContinueStory();//continue training
         ContinueButton.SetActive(true);
     }
@@ -175,14 +186,96 @@ public class DialogueController : MonoBehaviour
 
     public void LoadProgress()
     {
+        if (currentStory)
+        {
+            if (PlayerPrefs.HasKey("inkSaveState"))
+            {
+                var savedState = PlayerPrefs.GetString("inkSaveState");
+                LoadSteps();
+                currentStory.ChoosePathString(savedState);
+                ContinueButton.SetActive(true);
+                ContinueStory();
+                Debug.Log("You have load progress at " + savedState);
+            }
+        }
+        else
+        {
+            EnterDialogueMode(inkJSON);
+            StartButton.SetActive(false);
+        }
+
         if (PlayerPrefs.HasKey("inkSaveState"))
         {
             var savedState = PlayerPrefs.GetString("inkSaveState");
+            LoadSteps();
             currentStory.ChoosePathString(savedState);
             ContinueButton.SetActive(true);
             ContinueStory();
             Debug.Log("You have load progress at " + savedState);
         }
+
+    }
+
+    public void showContinueButton()
+    {
+        ContinueButton.SetActive(true);
+    }
+
+    public void GuideOn()
+    {
+        Guide.SetActive(true);
+        SolderingAnimator.Play("Default");
+        SolderingAnimator.Play("DefaultLayer1");
+    }
+
+    public void GuideOff()
+    {
+        Guide.SetActive(false);
+    }
+
+    public void LoadSteps()
+    {
+        if (PlayerPrefs.HasKey("inkSaveState"))
+        {
+            var currentStep = PlayerPrefs.GetString("inkSaveState");
+            switch (currentStep)
+            {
+                case "step1":
+                    Debug.Log("Initialize in step 1");
+                    Guide.SetActive(false);
+                    Station.SetActive(false);
+                    break;
+                case "step2":
+                    Debug.Log("Initialize in step 2");
+                    Guide.SetActive(false);
+                    Station.SetActive(false);
+                    break;
+                case "step3":
+                    Debug.Log("Initialize in step 3");
+                    Station.SetActive(true);
+                    SolderingAnimator.Play("Default");
+                    SolderingAnimator.Play("DefaultLayer1");
+                    break;
+                case "step4":
+                    Debug.Log("Initialize in step 4");
+                    Station.SetActive(true);
+                    SolderingAnimator.Play("Default");
+                    SolderingAnimator.Play("DefaultLayer1");
+                    break;
+                case "step5":
+                    Debug.Log("Initialize in step 5");
+                    Station.SetActive(true);
+                    SolderingAnimator.Play("Default");
+                    SolderingAnimator.Play("DefaultLayer1");
+                    break;
+
+
+                default:
+                    Debug.LogWarning("can not locate current step");
+                    break;
+            }
+        }
+
     }
 
 }

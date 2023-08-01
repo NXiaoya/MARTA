@@ -8,5 +8,6 @@ public class ScenesLoader : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        Debug.Log("Jump to scene"+sceneName);
     }
 }
