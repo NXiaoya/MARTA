@@ -181,16 +181,16 @@ public class DialogueController : MonoBehaviour
             savedState = savedState.Substring(0, 5);
         }
         Debug.Log("You have saved progress at " + savedState);
-        PlayerPrefs.SetString("inkSaveState", savedState);//('key name',value)
+        PlayerPrefs.SetString("inkSaveSolder", savedState);//('key name',value)
     }
 
     public void LoadProgress()
     {
         if (currentStory)
         {
-            if (PlayerPrefs.HasKey("inkSaveState"))
+            if (PlayerPrefs.HasKey("inkSaveSolder"))
             {
-                var savedState = PlayerPrefs.GetString("inkSaveState");
+                var savedState = PlayerPrefs.GetString("inkSaveSolder");
                 LoadSteps();
                 currentStory.ChoosePathString(savedState);
                 ContinueButton.SetActive(true);
@@ -204,9 +204,9 @@ public class DialogueController : MonoBehaviour
             StartButton.SetActive(false);
         }
 
-        if (PlayerPrefs.HasKey("inkSaveState"))
+        if (PlayerPrefs.HasKey("inkSaveSolder"))
         {
-            var savedState = PlayerPrefs.GetString("inkSaveState");
+            var savedState = PlayerPrefs.GetString("inkSaveSolder");
             LoadSteps();
             currentStory.ChoosePathString(savedState);
             ContinueButton.SetActive(true);
@@ -235,9 +235,9 @@ public class DialogueController : MonoBehaviour
 
     public void LoadSteps()
     {
-        if (PlayerPrefs.HasKey("inkSaveState"))
+        if (PlayerPrefs.HasKey("inkSaveSolder"))
         {
-            var currentStep = PlayerPrefs.GetString("inkSaveState");
+            var currentStep = PlayerPrefs.GetString("inkSaveSolder");
             switch (currentStep)
             {
                 case "step1":

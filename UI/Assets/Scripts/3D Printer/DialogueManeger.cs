@@ -180,14 +180,14 @@ public class DialogueManeger : MonoBehaviour
             savedState = savedState.Substring(0, 5);
         }
         Debug.Log("You have saved progress at " + savedState);
-        PlayerPrefs.SetString("inkSaveState", savedState);//('key name',value)
+        PlayerPrefs.SetString("inkSavePrinter", savedState);//('key name',value)
     }
 
     public void LoadProgress()
     {
-        if (PlayerPrefs.HasKey("inkSaveState"))
+        if (PlayerPrefs.HasKey("inkSavePrinter"))
         {
-            var savedState = PlayerPrefs.GetString("inkSaveState");
+            var savedState = PlayerPrefs.GetString("inkSavePrinter");
             Laptop.SetActive(false);
             Printer.SetActive(false);
             currentStory.ChoosePathString(savedState);
