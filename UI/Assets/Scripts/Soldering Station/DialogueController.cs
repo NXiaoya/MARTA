@@ -162,14 +162,10 @@ public class DialogueController : MonoBehaviour
     public void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);//pass the choice index
-        string savedState = currentStory.state.currentPathString;//get the current story progress
-        if (savedState.Length > 5)
-        {
-            // index of string array and number of characters accepted
-            savedState = savedState.Substring(0, 5);
-        }
-        LoadSteps();
         ContinueStory();//continue training
+        string savedState = "step"+(choiceIndex+1);//get the current story progress
+        Debug.Log(savedState);
+        LoadSteps(savedState);
         ContinueButton.SetActive(true);
     }
     public void SaveProgress()
@@ -191,7 +187,7 @@ public class DialogueController : MonoBehaviour
             if (PlayerPrefs.HasKey("inkSaveSolder"))
             {
                 var savedState = PlayerPrefs.GetString("inkSaveSolder");
-                LoadSteps();
+                LoadSteps(savedState);
                 currentStory.ChoosePathString(savedState);
                 ContinueButton.SetActive(true);
                 ContinueStory();
@@ -207,7 +203,7 @@ public class DialogueController : MonoBehaviour
         if (PlayerPrefs.HasKey("inkSaveSolder"))
         {
             var savedState = PlayerPrefs.GetString("inkSaveSolder");
-            LoadSteps();
+            LoadSteps(savedState);
             currentStory.ChoosePathString(savedState);
             ContinueButton.SetActive(true);
             ContinueStory();
@@ -233,11 +229,9 @@ public class DialogueController : MonoBehaviour
         Guide.SetActive(false);
     }
 
-    public void LoadSteps()
+    public void LoadSteps(String currentStep)
     {
-        if (PlayerPrefs.HasKey("inkSaveSolder"))
-        {
-            var currentStep = PlayerPrefs.GetString("inkSaveSolder");
+      
             switch (currentStep)
             {
                 case "step1":
@@ -274,7 +268,7 @@ public class DialogueController : MonoBehaviour
                     Debug.LogWarning("can not locate current step");
                     break;
             }
-        }
+        
 
     }
 
