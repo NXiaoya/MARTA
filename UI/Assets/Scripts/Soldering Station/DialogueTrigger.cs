@@ -12,6 +12,7 @@ public class DialogueTrigger : MonoBehaviour
     void Start()
     {
         button = GameObject.Find("Start");
+
     }
 
     public void OnPanel()

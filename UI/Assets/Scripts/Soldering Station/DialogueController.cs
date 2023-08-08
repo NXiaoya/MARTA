@@ -62,6 +62,15 @@ public class DialogueController : MonoBehaviour
             index++;
         }
 
+        if (PlayerPrefs.HasKey("Progress"))
+        {
+            var ProgressEnter = PlayerPrefs.GetString("Progress");
+            if (ProgressEnter == "true")
+            {
+                LoadProgress();
+                PlayerPrefs.SetString("Progress", "false");//('key name',value)
+            }
+        }
     }
 
     public void EnterDialogueMode(TextAsset inkJSON)
@@ -163,7 +172,7 @@ public class DialogueController : MonoBehaviour
     {
         currentStory.ChooseChoiceIndex(choiceIndex);//pass the choice index
         ContinueStory();//continue training
-        string savedState = "step"+(choiceIndex+1);//get the current story progress
+        string savedState = "step" + (choiceIndex + 1);//get the current story progress
         Debug.Log(savedState);
         LoadSteps(savedState);
         ContinueButton.SetActive(true);
@@ -231,44 +240,44 @@ public class DialogueController : MonoBehaviour
 
     public void LoadSteps(String currentStep)
     {
-      
-            switch (currentStep)
-            {
-                case "step1":
-                    Debug.Log("Initialize in step 1");
-                    Guide.SetActive(false);
-                    Station.SetActive(false);
-                    break;
-                case "step2":
-                    Debug.Log("Initialize in step 2");
-                    Guide.SetActive(false);
-                    Station.SetActive(false);
-                    break;
-                case "step3":
-                    Debug.Log("Initialize in step 3");
-                    Station.SetActive(true);
-                    SolderingAnimator.Play("Default");
-                    SolderingAnimator.Play("DefaultLayer1");
-                    break;
-                case "step4":
-                    Debug.Log("Initialize in step 4");
-                    Station.SetActive(true);
-                    SolderingAnimator.Play("Default");
-                    SolderingAnimator.Play("DefaultLayer1");
-                    break;
-                case "step5":
-                    Debug.Log("Initialize in step 5");
-                    Station.SetActive(true);
-                    SolderingAnimator.Play("Default");
-                    SolderingAnimator.Play("DefaultLayer1");
-                    break;
+
+        switch (currentStep)
+        {
+            case "step1":
+                Debug.Log("Initialize in step 1");
+                Guide.SetActive(false);
+                Station.SetActive(false);
+                break;
+            case "step2":
+                Debug.Log("Initialize in step 2");
+                Guide.SetActive(false);
+                Station.SetActive(false);
+                break;
+            case "step3":
+                Debug.Log("Initialize in step 3");
+                Station.SetActive(true);
+                SolderingAnimator.Play("Default");
+                SolderingAnimator.Play("DefaultLayer1");
+                break;
+            case "step4":
+                Debug.Log("Initialize in step 4");
+                Station.SetActive(true);
+                SolderingAnimator.Play("Default");
+                SolderingAnimator.Play("DefaultLayer1");
+                break;
+            case "step5":
+                Debug.Log("Initialize in step 5");
+                Station.SetActive(true);
+                SolderingAnimator.Play("Default");
+                SolderingAnimator.Play("DefaultLayer1");
+                break;
 
 
-                default:
-                    Debug.LogWarning("can not locate current step");
-                    break;
-            }
-        
+            default:
+                Debug.LogWarning("can not locate current step");
+                break;
+        }
+
 
     }
 

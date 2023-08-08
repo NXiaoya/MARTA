@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Printer1
+  - Printer2
+  - Printer3
+  - Solder1
+  - CEDevice
   layers:
   - Default
   - TransparentFX

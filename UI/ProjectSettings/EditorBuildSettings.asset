@@ -11,6 +11,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Soldering Station.unity
     guid: 6ebd7dc546e20344ea07d7bdfb00e861
+  - enabled: 1
+    path: Assets/Scenes/Progress.unity
+    guid: 630ab7da11238294fa55c573fe4f155d
+  - enabled: 1
+    path: Assets/Scenes/CE Device State.unity
+    guid: 2481a914073893748a24eb85c5b209ac
+  - enabled: 1
+    path: Assets/Scenes/3D Printer.unity
+    guid: 98559dd05aeb6c44dab8a61b2b175d4d
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}
