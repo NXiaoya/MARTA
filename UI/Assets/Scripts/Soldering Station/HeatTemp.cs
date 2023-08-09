@@ -8,33 +8,72 @@ public class IntegerCounter : MonoBehaviour
     public TextMeshProUGUI countText;
     [SerializeField] private GameObject ContinueButton;
     
-    GameObject SwitchB;
+    GameObject HighlightObject;
     private int targetCount = 350;
     private float timeToCount = 2f;
 
    public void HighlightSwitch()
         {
-            SwitchB = GameObject.Find("swiitch");
-            Outline outlineComponent = SwitchB.GetComponent<Outline>();
+            HighlightObject = GameObject.Find("swiitch");
+            Outline outlineComponent =HighlightObject.GetComponent<Outline>();
             if (outlineComponent != null)
             {
-                SwitchB.GetComponent<Outline>().enabled = true;
+                HighlightObject.GetComponent<Outline>().enabled = true;
             }
             else
             {
-                Outline outline = SwitchB.AddComponent<Outline>();
+                Outline outline = HighlightObject.AddComponent<Outline>();
                 outline.enabled = true;
-                SwitchB.GetComponent<Outline>().OutlineColor = Color.blue;
-                SwitchB.GetComponent<Outline>().OutlineWidth = 7.0f;
+                HighlightObject.GetComponent<Outline>().OutlineColor = Color.blue;
+                HighlightObject.GetComponent<Outline>().OutlineWidth = 7.0f;
             }
 
         }
+
+        public void HighlightPumpTrigger()
+        {
+            HighlightObject = GameObject.Find("Trigger:1");
+            Outline outlineComponent = HighlightObject.GetComponent<Outline>();
+            if (outlineComponent != null)
+            {
+                HighlightObject.GetComponent<Outline>().enabled = true;
+            }
+            else
+            {
+                Outline outline = HighlightObject.AddComponent<Outline>();
+                outline.enabled = true;
+                HighlightObject.GetComponent<Outline>().OutlineColor = Color.blue;
+                HighlightObject.GetComponent<Outline>().OutlineWidth = 7.0f;
+            }
+
+        }  
+
+        public void HighlightSponge()
+        {
+            HighlightObject = GameObject.Find("sponge_high_poly");
+            Outline outlineComponent = HighlightObject.GetComponent<Outline>();
+            if (outlineComponent != null)
+            {
+                HighlightObject.GetComponent<Outline>().enabled = true;
+            }
+            else
+            {
+                Outline outline = HighlightObject.AddComponent<Outline>();
+                outline.enabled = true;
+                HighlightObject.GetComponent<Outline>().OutlineColor = Color.yellow;
+                HighlightObject.GetComponent<Outline>().OutlineWidth = 7.0f;
+            }
+
+        } 
+        public void HighlightOff(){
+            HighlightObject.GetComponent<Outline>().enabled = false;
+        } 
 
     private System.Collections.IEnumerator CountAndChangeText()
     {
         int startCount = 0;
         float elapsedTime = 0f;
-        SwitchB.GetComponent<Outline>().enabled = false;
+        HighlightObject.GetComponent<Outline>().enabled = false;
 
         while (elapsedTime < timeToCount)
         {

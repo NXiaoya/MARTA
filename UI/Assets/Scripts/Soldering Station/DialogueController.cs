@@ -17,8 +17,10 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private GameObject Station;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private GameObject[] choices;
+    [SerializeField] public GameObject[] Hints;
     [SerializeField] private Animator SolderingAnimator;
     [SerializeField] private TextAsset inkJSON;
+    
     private Transform highlight;
 
 
@@ -53,7 +55,7 @@ public class DialogueController : MonoBehaviour
         dialoguePanel.SetActive(false);
 
 
-        //get all the choices text
+        //get all the choices textchoices
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
         foreach (GameObject choice in choices)
@@ -117,6 +119,20 @@ public class DialogueController : MonoBehaviour
            ContinueButton.SetActive(false);
            SolderingAnimator.Play(objectName);
            ContinueButton.SetActive(true);
+       });
+
+          currentStory.BindExternalFunction("SolderAnimationwithButton", (int Hintsindex) =>
+       {
+           int index =Hintsindex;
+           // Check if Hints array is not empty
+        if (Hints != null && Hints.Length > 0)
+        {
+            // Activate the first element in Hints array
+            Hints[index].gameObject.SetActive(true);
+            Debug.Log("Show hint "+ index);
+        }
+           
+           ContinueButton.SetActive(false);
        });
         //ContinueStory();//Call the function to contine the story
     }

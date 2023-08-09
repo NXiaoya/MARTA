@@ -2,6 +2,7 @@ EXTERNAL ShowObject(objectName)
 EXTERNAL Highlight(ObjectName)
 EXTERNAL HighlightOff(ObjectName)
 EXTERNAL SolderAnimation(ObjectName)
+EXTERNAL SolderAnimationwithButton(ObjectName)
 
 -> menu
 
@@ -52,7 +53,7 @@ We have a soldering sation and a strip board.
 ~ HighlightOff("StripBoard")
 ~ SolderAnimation("1PlugResistor")
 Bend the leg to make the component fit with the board. And sild the components into the pin hole.
-~ SolderAnimation("2TurnOnStation")
+~ SolderAnimationwithButton(0)
 Turn on the soldering station.
 ~ SolderAnimation("3Heatiron")
 Prepare a wet sponge. Before you start soldering, apply some solder to the tip of the iron and clean it with the sponge.
@@ -74,8 +75,8 @@ We can use desoldring pump to help us remove the components.
 Push done the plunger before desoldering.
 ~ SolderAnimation("9HeatJoint")
 Heat the solder directly with the soldering iron with the tip of the pump next to the solder joint.
-~ SolderAnimation("10Desolder")
-Press the button.Then the pump sucks up the solder. Sometimes it takes several attempts to remove the component.
+~ SolderAnimationwithButton(1)
+Press the button.Then the pump sucks up the solder. Sometimes it takes several attempts to remove the component.(Press the button in the scene)
 ->step5
 === step5 ===
 When soldering is complete, several steps are required to ensure the safety of the equipment and the user.
