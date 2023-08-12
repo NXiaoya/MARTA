@@ -19,6 +19,6 @@ public class OpenPanel : MonoBehaviour
         
             button.SetActive(false);
             DialogueManeger.GetInstance().EnterDialogueMode(inkJSON);
-        
+            DialogueManeger.GetInstance().ContinueStory();
     }
 }

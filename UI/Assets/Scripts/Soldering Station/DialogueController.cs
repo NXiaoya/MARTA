@@ -20,7 +20,7 @@ public class DialogueController : MonoBehaviour
     [SerializeField] public GameObject[] Hints;
     [SerializeField] private Animator SolderingAnimator;
     [SerializeField] private TextAsset inkJSON;
-    
+
     private Transform highlight;
 
 
@@ -85,8 +85,8 @@ public class DialogueController : MonoBehaviour
         {
             ContinueButton.SetActive(false);
             GuideOn();
-            SolderingAnimator.Play("Default");
             Station.SetActive(true);
+            SolderingAnimator.Play("Default");
         });
 
         currentStory.BindExternalFunction("Highlight", (string objectName) =>
@@ -121,19 +121,19 @@ public class DialogueController : MonoBehaviour
            ContinueButton.SetActive(true);
        });
 
-          currentStory.BindExternalFunction("SolderAnimationwithButton", (int Hintsindex) =>
-       {
-           int index =Hintsindex;
-           // Check if Hints array is not empty
-        if (Hints != null && Hints.Length > 0)
-        {
-            // Activate the first element in Hints array
-            Hints[index].gameObject.SetActive(true);
-            Debug.Log("Show hint "+ index);
-        }
-           
-           ContinueButton.SetActive(false);
-       });
+        currentStory.BindExternalFunction("SolderAnimationwithButton", (int Hintsindex) =>
+     {
+         int index = Hintsindex;
+         // Check if Hints array is not empty
+         if (Hints != null && Hints.Length > 0)
+         {
+             // Activate the first element in Hints array
+             Hints[index].gameObject.SetActive(true);
+             Debug.Log("Show hint " + index);
+         }
+
+         ContinueButton.SetActive(false);
+     });
         //ContinueStory();//Call the function to contine the story
     }
 
@@ -143,6 +143,7 @@ public class DialogueController : MonoBehaviour
         DialogueIsPlay = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        StartButton.SetActive(true);
     }
 
     public void ContinueStory()
@@ -223,17 +224,18 @@ public class DialogueController : MonoBehaviour
         {
             EnterDialogueMode(inkJSON);
             StartButton.SetActive(false);
+            if (PlayerPrefs.HasKey("inkSaveSolder"))
+            {
+                var savedState = PlayerPrefs.GetString("inkSaveSolder");
+                LoadSteps(savedState);
+                currentStory.ChoosePathString(savedState);
+                ContinueButton.SetActive(true);
+                ContinueStory();
+                Debug.Log("You have load progress at " + savedState);
+            }
         }
 
-        if (PlayerPrefs.HasKey("inkSaveSolder"))
-        {
-            var savedState = PlayerPrefs.GetString("inkSaveSolder");
-            LoadSteps(savedState);
-            currentStory.ChoosePathString(savedState);
-            ContinueButton.SetActive(true);
-            ContinueStory();
-            Debug.Log("You have load progress at " + savedState);
-        }
+
 
     }
 

@@ -25,6 +25,7 @@ Soldering Tutorial
 === step1 ===
 Welcome to the AR Soldering Tutorial! 
 Whether you're a beginner or looking to improve your soldering skills, this step-by-step guide will walk you through the fundamentals of soldering. 
+You can save the steps that you think you might want to review next time.
 ->step2
 === step2 ===
 Get ready to start a safe virtual soldering experience!
@@ -84,5 +85,6 @@ When soldering is complete, several steps are required to ensure the safety of t
 When you are not soldering, remember always keep the iron into the holder.
 ~ SolderAnimation("12StationOff")
 Remember to turn off the soldering station.
+Thank you so much for taking the MARTA soldering station training!
 
 -> END
