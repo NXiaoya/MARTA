@@ -71,6 +71,7 @@ Then you can goto the LCD screen on the printer. Go down to autoload filament.
 Click the button and ready to load the filament.
 ~ PrinterSetupAnimationTrigger(0)
 If the end of the filament is curled, you can snip the end to make it sharp.
+~ PrinterSetupAnimation("LoadPLA")
 ~ LCDHints(2)
 Load the filament into the extruder and select the filament material, press the button to confirm. (Here we have PLA in lab.)
 ~ PrinterSetupAnimation("HeatNozzle")
@@ -80,7 +81,7 @@ Look closely to the nozzle. The LCD will ask whether the loading the finished. I
 ->step5
 === step5 ===
 Now we are ready to print!
-~ PrinterSetupAnimationTrigger(1)
+~ PrinterSetupAnimation("InsertSD")
 Here we show the example of printing with SD card. Insert the SD card with the G-code file first.
 ~ LCDHints(4)
 Select the file we have just created. Press the knob to confirm.
@@ -97,11 +98,10 @@ Sometimes the results will not be good and you might need to optimise the settin
 ->step7
 === step7 ===
 Now the 3D printing has finished.
-~ PrinterSetupAnimation("CoolDown")
 When the printing is finished, let both nozzle and heatbed cool down before removing the printed object. 
 ~ PrinterSetupAnimation("RemovePrint")
 Always handle the printed objects when the temperature of the bed and nozzle drop to room temperature. Remove the steel sheet from the printer and bend it slightly; prints should pop off.
 ~ LCDHints(6)
-When not using a 3D printer, please turn down the temperature of the nozzle and bed to 0.
+When not using a 3D printer, please go to settings > Temperature to turn down the temperature of the nozzle and bed to 0. 
 Thank you so much for taking the MARTA 3D printer training!
 -> END

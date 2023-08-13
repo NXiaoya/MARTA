@@ -128,6 +128,7 @@ public class DialogueManeger : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        StartButton.SetActive(true);
     }
 
     public void ContinueStory()
@@ -289,12 +290,11 @@ public class DialogueManeger : MonoBehaviour
                 Printer.SetActive(true);
                 break;
             case "step6":
-                Debug.Log("Initialize in step 5");
+                Debug.Log("Initialize in step 6");
                 Printer.SetActive(true);
-                PrinterAnimator.Play("CompletePrinting");
                 break;
             case "step7":
-                Debug.Log("Initialize in step 5");
+                Debug.Log("Initialize in step 7");
                 Printer.SetActive(true);
                 break;
 

@@ -1764,7 +1764,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -43.6, y: 13.5}
+  m_AnchoredPosition: {x: -53.8, y: 18.7}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &402048045
@@ -1787,7 +1787,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Find the image target for soldering station training.
+  m_text: Align with the image target for soldering station training.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -1814,10 +1814,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 52.65
   m_fontSizeBase: 32
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1850,7 +1850,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -6.4525986, z: -462.30865, w: -5.2724266}
+  m_margin: {x: -188.4549, y: -68.187675, z: -703.4164, w: 10.973606}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4090,7 +4090,19 @@ MonoBehaviour:
         m_CallState: 2
   OnTargetLost:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 708382801}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1013902764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4191,8 +4203,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 96.8, y: -2.3}
+  m_SizeDelta: {x: 146.8649, y: 108.524}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1019858897
 MonoBehaviour:
@@ -9384,7 +9396,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -8353004211804061148, guid: d83fb06acc64b434f89be1913f0a1ed2,
+      objectReference: {fileID: -167906427434553992, guid: ad0a07472944f1a469fe36bf083fb1d5,
         type: 3}
     - target: {fileID: -5436405920588345295, guid: cb1acb0b494ec2b4e860d6efaecc13e8,
         type: 3}
@@ -9396,13 +9408,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: -1726533969664128431, guid: d83fb06acc64b434f89be1913f0a1ed2,
+      objectReference: {fileID: -389402008792246631, guid: 00b8c54ecffceca4dbdf0ea6c6989a6f,
         type: 3}
     - target: {fileID: -4492760896624397386, guid: cb1acb0b494ec2b4e860d6efaecc13e8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -8353004211804061148, guid: d83fb06acc64b434f89be1913f0a1ed2,
+      objectReference: {fileID: -167906427434553992, guid: ad0a07472944f1a469fe36bf083fb1d5,
         type: 3}
     - target: {fileID: -4051224437332446827, guid: cb1acb0b494ec2b4e860d6efaecc13e8,
         type: 3}
@@ -9438,7 +9450,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -8353004211804061148, guid: d83fb06acc64b434f89be1913f0a1ed2,
+      objectReference: {fileID: -389402008792246631, guid: 00b8c54ecffceca4dbdf0ea6c6989a6f,
         type: 3}
     - target: {fileID: 9136588924340459482, guid: cb1acb0b494ec2b4e860d6efaecc13e8,
         type: 3}
