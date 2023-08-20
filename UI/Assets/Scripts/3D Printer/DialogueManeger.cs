@@ -17,20 +17,26 @@ public class DialogueManeger : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     [SerializeField] public GameObject[] Hints;
     [SerializeField] public GameObject[] LCDHints;
+    [SerializeField] public GameObject[] MoveHints;
     [SerializeField] public GameObject[] AnimationTrigger;
     [SerializeField] private GameObject ScreenImage;
     [SerializeField] public GameObject PrintModel;
     [SerializeField] private TextAsset inkJSON;
     [SerializeField] private GameObject StartButton;
 
+    [Header("Params")]
+    [SerializeField] private float typingSpeed =  0.1f;
 
     private TextMeshProUGUI[] choicesText;
 
+    private bool canContinueToNextLine = false;
+    private bool submitPressed = false;
+
     private Story currentStory;
+    private Coroutine displayLineCoroutine;
     private static DialogueManeger instance;
 
     private const string Laptop_TAG = "ChangeLaptop";
-    private const string ShowPT_TAG = "show3DPrinter";
 
 
 
@@ -50,17 +56,26 @@ public class DialogueManeger : MonoBehaviour
 
     private void Start()
     {
-
         dialoguePanel.SetActive(false);
-        Printer.SetActive(false);
 
-        //get all the choices text
+
+        //get all the choices textchoices
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
         foreach (GameObject choice in choices)
         {
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++;
+        }
+
+        if (PlayerPrefs.HasKey("Progress"))
+        {
+            var ProgressEnter = PlayerPrefs.GetString("Progress");
+            if (ProgressEnter == "true")
+            {
+                LoadProgress();
+                PlayerPrefs.SetString("Progress", "false");//('key name',value)
+            }
         }
 
     }
@@ -81,6 +96,12 @@ public class DialogueManeger : MonoBehaviour
             }
 
             ContinueButton.SetActive(false);
+        });
+
+             currentStory.BindExternalFunction("ShowObject", (string objectName) =>
+        {
+            ContinueButton.SetActive(false);
+            Printer.SetActive(true);
         });
         currentStory.BindExternalFunction("LCDHints", (int Hintsnumber) =>
         {
@@ -119,6 +140,26 @@ public class DialogueManeger : MonoBehaviour
         {
             PrintModel.SetActive(true);
         });
+         currentStory.BindExternalFunction("ShowMoveHint", (int index) =>
+        {
+            int ObjextIndex = index;
+            if (MoveHints != null && MoveHints.Length > 0)
+            {
+                // Activate the first element in Hints array
+                MoveHints[ObjextIndex].gameObject.SetActive(true);
+                Debug.Log("Show Move hint " + index);
+            }
+        });
+         currentStory.BindExternalFunction("HideMoveHint", (int index) =>
+        {
+            int ObjextIndex = index;
+            if (MoveHints != null && MoveHints.Length > 0)
+            {
+                // Activate the first element in Hints array
+                MoveHints[ObjextIndex].gameObject.SetActive(false);
+                Debug.Log("Hide Move hint " + index);
+            }
+        });
         //ContinueStory();//Call the function to contine the story
 
     }
@@ -129,15 +170,16 @@ public class DialogueManeger : MonoBehaviour
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
         StartButton.SetActive(true);
+        Printer.SetActive(false);
     }
 
     public void ContinueStory()
     {
         if (currentStory.canContinue)//check if the stroy can run normally
         {
-            HandleTags(currentStory.currentTags);//check tags
             dialogueText.text = currentStory.Continue();//display the text
             DisplayChoices();//display choices if they exsists
+            HandleTags(currentStory.currentTags);//check tags
         }
         else
         {
@@ -145,6 +187,8 @@ public class DialogueManeger : MonoBehaviour
         }
     }
 
+
+  
     private void HandleTags(List<string> currentTags)
     {
         //loop each tag
@@ -163,10 +207,7 @@ public class DialogueManeger : MonoBehaviour
                 case Laptop_TAG:
                     ScreenImage.SetActive(true);
                     ScreenAnimator.Play(tagValue);
-                    break;
-                case ShowPT_TAG:
-                    Printer.SetActive(true);
-                    ContinueButton.SetActive(false);
+                    Debug.Log("Load screen tag:"+ tagValue);
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not currently being handled" + tag);
@@ -275,7 +316,7 @@ public class DialogueManeger : MonoBehaviour
                 break;
             case "step2":
                 Debug.Log("Initialize in step 2");
-                Printer.SetActive(true);
+                Printer.SetActive(false);
                 break;
             case "step3":
                 Debug.Log("Initialize in step 3");

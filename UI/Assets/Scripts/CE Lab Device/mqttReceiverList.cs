@@ -50,8 +50,6 @@ public class mqttReceiverList : M2MqttUnityClient
     public bool autoTest = false;
 
     //using C# Property GET/SET and event listener to reduce Update overhead in the controlled objects
-    //private string m_msg;
-    //private string m_topic;
      mqttObj mqttObject = new mqttObj();
 
     public event OnMessageArrivedDelegate OnMessageArrived;

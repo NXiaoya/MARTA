@@ -51,17 +51,17 @@ public class IntegerCounter : MonoBehaviour
         public void HighlightSponge()
         {
             HighlightObject = GameObject.Find("sponge_high_poly");
-            Outline outlineComponent = HighlightObject.GetComponent<Outline>();
-            if (outlineComponent != null)
+            Outline outlineComponent = HighlightObject.GetComponent<Outline>();//get component outline
+            if (outlineComponent != null)//the outline of this component has already been added
             {
-                HighlightObject.GetComponent<Outline>().enabled = true;
+                HighlightObject.GetComponent<Outline>().enabled = true;//enable outline
             }
             else
             {
-                Outline outline = HighlightObject.AddComponent<Outline>();
+                Outline outline = HighlightObject.AddComponent<Outline>();//add component outline
                 outline.enabled = true;
-                HighlightObject.GetComponent<Outline>().OutlineColor = Color.yellow;
-                HighlightObject.GetComponent<Outline>().OutlineWidth = 7.0f;
+                HighlightObject.GetComponent<Outline>().OutlineColor = Color.yellow;//outline color
+                HighlightObject.GetComponent<Outline>().OutlineWidth = 7.0f;//outline width
             }
 
         } 

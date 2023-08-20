@@ -1,12 +1,15 @@
 EXTERNAL ShowHints(Hintsnumber)
+EXTERNAL ShowObject(objectName)
 EXTERNAL LCDHints(Hintsnumber)
+EXTERNAL ShowMoveHint(index)
+EXTERNAL HideMoveHint(index)
 EXTERNAL PrinterSetupAnimation(AnimationName)
 EXTERNAL PrinterSetupAnimationTrigger(TriggerName)
 EXTERNAL ChooseModel(ModelName)
 -> menu
 
 === menu ===
-3D Printer Tutorial 
+3D Printer Tutorial (Choose the step to start)
 
 + Step 1: Intro
   -> step1
@@ -27,12 +30,21 @@ EXTERNAL ChooseModel(ModelName)
 === step1 ===
 =s1
 Welcome to our augmented reality tutorial for 3D printing! This Tutorial will guide you through the process of using a 3D printer. Let's embark on this journey together and discover the incredible world of 3D printing!
-You can save the steps that you think you might want to review next time.
-In the connected environments lab, we have Prusa MK3S+ single-filament printer.
+~ ShowMoveHint(0)
+You can save the steps that you think you might want to review next time. In the progress page, you can see and load the progress you saved.
+~ HideMoveHint(0)
+~ ShowMoveHint(1)
+To continue the tutorial, you can press the "next" button on the text panel or press the objects with pulsing effcts in some specific steps.
+~ HideMoveHint(1)
+Get ready to start your AR 3D printer training experience!
 ->step2
 === step2 ===
-Get ready to start your AR 3D printer training experience!#show3DPrinter:Printer
+In the connected environments lab, we have Prusa MK3S+ single-filament printer.
+~ ShowObject("Printer")
 Please align the Prusa MK3S+ single-filament printer with the Printer Guide on the screen.
+~ ShowMoveHint(2)
+Once the target object is aligned, you can move around the camera.
+~ HideMoveHint(2)
 Before you start 3D printing, let's get to know some of the basic parts of a printer.
 ~ ShowHints(0)
 This is the control panel. (Press the highlighted area to continue.)
@@ -49,15 +61,15 @@ When setting up the slicer, please pay attention to the nozzle diameter of the p
 Before you start a printing, you need to get the sliced g-code file.
 ~ ShowHints(5)
 Please open the laptop.
-Then download and open PrusaSlicer.#ChangeLaptop:PrusaSlicer1
-Slicer will convert the 3D model to a set of instructions for the printer.#ChangeLaptop:PrusaSlicer2
-Include the following printers in the configuration.#ChangeLaptop:PrusaSlicer3
-Select Prusament PLA for the filament choice.#ChangeLaptop:PrusaSlicer4
-Click Finish.#ChangeLaptop:PrusaSlicer5
+Then download and open PrusaSlicer.
+Slicer will convert the 3D model to a set of instructions for the printer.#ChangeLaptop:PrusaSlicer1
+Include the following printers in the configuration.#ChangeLaptop:PrusaSlicer2
+Select Prusament PLA for the filament choice.#ChangeLaptop:PrusaSlicer3
+Click Finish.#ChangeLaptop:PrusaSlicer4
 ~ ChooseModel("Box")
-Let's try to print a box as an example. You can get a printable 3D model from thingverse or sketchfab or create by yourself.#ChangeLaptop:PrusaSlicer6
-Now you have the model imported. Check the print settings and click on slice to confirm slicing.#ChangeLaptop:PrusaSlicer8
-Export g-code to SD card.
+Let's try to print a box as an example. You can get a printable 3D model from thingverse or sketchfab or create by yourself.#ChangeLaptop:PrusaSlicer5
+Now you have the model imported. Check the print settings and click on slice to confirm slicing.#ChangeLaptop:PrusaSlicer7
+Export g-code to SD card.#ChangeLaptop:PrusaSlicer8
 ->step4
 === step4 ===
 Now you have the file to be printed. 

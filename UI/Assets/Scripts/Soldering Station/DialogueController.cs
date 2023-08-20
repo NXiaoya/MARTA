@@ -18,17 +18,24 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private GameObject[] choices;
     [SerializeField] public GameObject[] Hints;
+     [SerializeField] public GameObject[] MoveHints;
     [SerializeField] private Animator SolderingAnimator;
     [SerializeField] private TextAsset inkJSON;
 
     private Transform highlight;
 
+  private bool canContinueToNextLine = false;
+    private bool submitPressed = false;
+
+    [Header("Params")]
+    [SerializeField] private float typingSpeed = 0.0001f;
 
 
     private TextMeshProUGUI[] choicesText;
 
     private Story currentStory;
     private Boolean DialogueIsPlay;
+     private Coroutine displayLineCoroutine;
     private static DialogueController instance;
 
     GameObject ObjectHighlight;
@@ -53,6 +60,7 @@ public class DialogueController : MonoBehaviour
     {
         DialogueIsPlay = false;
         dialoguePanel.SetActive(false);
+        GuideOff();
 
 
         //get all the choices textchoices
@@ -101,7 +109,7 @@ public class DialogueController : MonoBehaviour
             {
                 Outline outline = ObjectHighlight.AddComponent<Outline>();
                 outline.enabled = true;
-                ObjectHighlight.GetComponent<Outline>().OutlineColor = Color.blue;
+                ObjectHighlight.GetComponent<Outline>().OutlineColor = Color.red;
                 ObjectHighlight.GetComponent<Outline>().OutlineWidth = 7.0f;
             }
 
@@ -113,13 +121,33 @@ public class DialogueController : MonoBehaviour
             ObjectHighlight.GetComponent<Outline>().enabled = false;
 
         });
+             currentStory.BindExternalFunction("ShowMoveHint", (int index) =>
+        {
+            int ObjextIndex = index;
+            if (MoveHints != null && MoveHints.Length > 0)
+            {
+                // Activate the first element in Hints array
+                MoveHints[ObjextIndex].gameObject.SetActive(true);
+                Debug.Log("Show Move hint " + index);
+            }
+        });
+         currentStory.BindExternalFunction("HideMoveHint", (int index) =>
+        {
+            int ObjextIndex = index;
+            if (MoveHints != null && MoveHints.Length > 0)
+            {
+                // Activate the first element in Hints array
+                MoveHints[ObjextIndex].gameObject.SetActive(false);
+                Debug.Log("Hide Move hint " + index);
+            }
+        });
 
-        currentStory.BindExternalFunction("SolderAnimation", (string objectName) =>
-       {
-           ContinueButton.SetActive(false);
-           SolderingAnimator.Play(objectName);
-           ContinueButton.SetActive(true);
-       });
+    //     currentStory.BindExternalFunction("SolderAnimation", (string objectName) =>
+    //    {
+    //        ContinueButton.SetActive(false);
+    //        SolderingAnimator.Play(objectName);
+    //        ContinueButton.SetActive(true);
+    //    });
 
         currentStory.BindExternalFunction("SolderAnimationwithButton", (int Hintsindex) =>
      {
@@ -142,12 +170,15 @@ public class DialogueController : MonoBehaviour
     {
         DialogueIsPlay = false;
         dialoguePanel.SetActive(false);
+        Station.SetActive(false);
+        GuideOff();
         dialogueText.text = "";
         StartButton.SetActive(true);
     }
 
     public void ContinueStory()
     {
+      
         if (currentStory.canContinue)//check if the stroy can run normally
         {
             dialogueText.text = currentStory.Continue();//display the text
@@ -158,6 +189,7 @@ public class DialogueController : MonoBehaviour
             ExitDialogueMode();
         }
     }
+    
 
 
     public void DisplayChoices()
