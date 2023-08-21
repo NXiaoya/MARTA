@@ -40,19 +40,19 @@ public class mqttControllerList : MonoBehaviour
     private void OnMessageArrivedHandler(mqttObj mqttObject) //the mqttObj is defined in the mqttReceiverList.cs
     {
         //We need to check the topic of the message to know where to use it 
-        if (mqttObject.topic.Contains(topicSubscribed))
+        if (mqttObject.topic.Contains(topicSubscribed))//check if it is the subcribed topic
         {
             var CEDevice = JsonUtility.FromJson<Root>(mqttObject.msg);
-            int Power = CEDevice.ENERGY.ApparentPower;
+            int Power = CEDevice.ENERGY.ApparentPower;//Get the power from the JSON
 
             Debug.Log(CEDevice.ENERGY.ApparentPower);
             if (Power > 50)
             {
-                gameObject.GetComponent<Image>().color = new Color(255, 0, 0);
+                gameObject.GetComponent<Image>().color = new Color(255, 0, 0);//change color to busy
             }
             else
             {
-                gameObject.GetComponent<Image>().color = new Color(0, 255, 0);
+                gameObject.GetComponent<Image>().color = new Color(0, 255, 0);//change color to available
             }
         }
     }

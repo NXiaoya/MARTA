@@ -86,7 +86,6 @@ public class DialogueController : MonoBehaviour
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         currentStory = new Story(inkJSON.text);//Create a new ink story
-        DialogueIsPlay = true;
         dialoguePanel.SetActive(true);//Open the intruction panel
 
         currentStory.BindExternalFunction("ShowObject", (string objectName) =>
@@ -240,29 +239,29 @@ public class DialogueController : MonoBehaviour
 
     public void LoadProgress()
     {
-        if (currentStory)
+        if (currentStory)//if currentStory exsists
         {
             if (PlayerPrefs.HasKey("inkSaveSolder"))
             {
-                var savedState = PlayerPrefs.GetString("inkSaveSolder");
-                LoadSteps(savedState);
-                currentStory.ChoosePathString(savedState);
+                var savedState = PlayerPrefs.GetString("inkSaveSolder");//get the saved step
+                LoadSteps(savedState);//load the initialize setting for this step
+                currentStory.ChoosePathString(savedState);//set the ink story to this knot
                 ContinueButton.SetActive(true);
-                ContinueStory();
+                ContinueStory();//Continue to next line
                 Debug.Log("You have load progress at " + savedState);
             }
         }
-        else
+        else// if no current story, which means load the saved state from progress page
         {
-            EnterDialogueMode(inkJSON);
+            EnterDialogueMode(inkJSON);//create a ink story
             StartButton.SetActive(false);
-            if (PlayerPrefs.HasKey("inkSaveSolder"))
+            if (PlayerPrefs.HasKey("inkSaveSolder"))//get the saved step
             {
                 var savedState = PlayerPrefs.GetString("inkSaveSolder");
-                LoadSteps(savedState);
-                currentStory.ChoosePathString(savedState);
+                LoadSteps(savedState);//load the initialize setting for this step
+                currentStory.ChoosePathString(savedState);//set the ink story to this knot
                 ContinueButton.SetActive(true);
-                ContinueStory();
+                ContinueStory();//Continue to next line
                 Debug.Log("You have load progress at " + savedState);
             }
         }
