@@ -9,7 +9,7 @@ EXTERNAL ChooseModel(ModelName)
 -> menu
 
 === menu ===
-3D Printer Tutorial (Choose the step to start)
+3D Printer: Process Introduction (Choose the step to start)
 
 + Step 1: Intro
   -> step1
